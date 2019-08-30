@@ -2,7 +2,7 @@
 // @name         QM Admin Script Editor
 // @namespace    http://tampermonkey.net/
 // @version      0.1
-// @description  try to take over the world!
+// @description  Turns QM Admin additional script textarea into a code editor
 // @include      *quantummetric.com*
 // @author       Addison Moore
 // @grant        none
@@ -10,9 +10,9 @@
 
 // Instructions
 // 1. Make sure React Dev Tools extension is installed and running
-// 2. Go to QM admin settings page and inspect the text area
-// 3. Toggle to React dev tools Components tab
-// 4. Turn tampermonkey script on and refresh the page
+// 2. Go to QM Admin settings page and inspect the text area
+// 3. Toggle to React dev tools Components tab. This will initialize the textarea as $r
+// 4. Refresh the page. You can close dev tools if you want to
 
 (function() {
   window.addEventListener("load", () => {
@@ -115,10 +115,9 @@
                         )
                         .addEventListener("load", () => {
                           //create a new textarea
-                          document
-                            .getElementsByClassName("settings-table")[2]
-                            .getElementsByTagName("tr")[2].style.display =
-                            "none";
+                          document.querySelectorAll(
+                            ".text-container"
+                          )[3].style.display = "none";
                           document.getElementsByTagName("textarea")[0];
                           let ta = document.createElement("textarea");
                           ta.setAttribute("id", "ta");
